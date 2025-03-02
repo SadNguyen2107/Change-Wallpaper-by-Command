@@ -26,6 +26,7 @@ if mood == "-h" or mood == "--help" or mood == "":
         edit    Edit the mood file.
         """
     )
+    exit()
 elif not is_mood_file_exist():
 
     # Create a mood file
