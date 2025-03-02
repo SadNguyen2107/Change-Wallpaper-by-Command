@@ -9,6 +9,14 @@ home_dir = Path.home()
 file_path = home_dir / "mood.json"
 
 
+def is_file_exist():
+    """
+    Check if the mood.json file exists
+    """
+
+    return file_path.exists()
+
+
 def edit_mood_file():
     """
     Open the mood.json file for the user to edit
@@ -22,6 +30,7 @@ def edit_mood_file():
             str(file_path),
         ]
     )
+
 
 def make_mood_file():
     """
