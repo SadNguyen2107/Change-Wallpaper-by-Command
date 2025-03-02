@@ -4,3 +4,7 @@ mood_to_wallpaper = {
     "waifu": r"C:\Users\User\OneDrive - Hanoi University of Science and Technology\Pictures\Wallpapers\miside-mita-dark-3840x2160-21051.jpg",
 }
 
+from pathlib import Path
+
+home_dir = Path.home()
+print(home_dir)
