@@ -1,6 +1,10 @@
 from pathlib import Path
 import json
 
+from mood_file import (
+    file_path,
+    read_mood_file,
+)
 
 def get_wallpaper_path(mood):
     """
@@ -8,18 +12,11 @@ def get_wallpaper_path(mood):
     :param mood: user mood
     :return: wallpaper path
     """
-
-    # Get the home directory
-    home_dir = Path.home()
-
-    # Create a file in the home directory
-    file_path = home_dir / "mood.json"
-
-    # Open the mood file
-    with open(str(file_path), "r") as file:
-        mood_to_wallpaper = json.load(file)
+    
+    # Read the mood file
+    wallpaper_path_dict = read_mood_file()
 
     # Get wallpaper path
-    wallpaper_path = mood_to_wallpaper[mood]
+    wallpaper_path = wallpaper_path_dict.get(mood)
 
     return wallpaper_path
