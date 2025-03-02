@@ -31,5 +31,5 @@ def make_mood_file():
 def read_mood_file():
     with open(str(file_path), "r") as file:
         mood_to_wallpaper = json.load(file)
-        
+
     print("\n".join(mood_to_wallpaper))
