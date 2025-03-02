@@ -3,16 +3,23 @@ from process_mood import get_wallpaper_path
 from change_wallpaper import change_wallpaper
 
 from mood_file import (
-    make_mood_file, 
+    is_mood_file_exist,
     read_mood_file,
     edit_mood_file,
+    make_mood_file,
 )
 
 # Get user input
 mood = get_user_input()
 
 # Different commands for different moods
-if mood == "ls":
+if not is_mood_file_exist():
+    
+    # Create a mood file
+    make_mood_file()
+    exit()
+
+elif mood == "ls":
 
     # Print all the moods current available
     read_mood_file()

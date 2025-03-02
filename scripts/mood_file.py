@@ -9,7 +9,7 @@ home_dir = Path.home()
 file_path = home_dir / "mood.json"
 
 
-def is_file_exist():
+def is_mood_file_exist():
     """
     Check if the mood.json file exists
     """
