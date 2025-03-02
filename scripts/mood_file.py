@@ -22,10 +22,13 @@ def edit_mood_file():
     Open the mood.json file for the user to edit
     """
 
+    # VS Code path
+    vs_code_path = home_dir / "AppData" / "Local" / "Programs" / "Microsoft VS Code" / "Code.exe"
+
     # Open VS Code and wait for the user to close it before continuing
     subprocess.run(
         [
-            r"C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe",
+            str(vs_code_path),
             "-w",
             str(file_path),
         ]
