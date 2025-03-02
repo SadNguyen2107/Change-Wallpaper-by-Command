@@ -2,6 +2,9 @@ from pathlib import Path
 import subprocess
 import configparser
 
+import os
+import sys
+
 # Get the home directory
 home_dir = Path.home()
 
@@ -19,23 +22,39 @@ def is_mood_file_exist():
 
 def edit_mood_file():
     """
-    Open the mood.ini file for the user to edit
+    Open the mood.ini file for the user to edit.
+    First, try opening with VS Code. If it fails, open with the default editor.
     """
 
-    # VS Code path
     vs_code_path = (
         home_dir / "AppData" / "Local" / "Programs" / "Microsoft VS Code" / "Code.exe"
     )
 
-    # Open VS Code and wait for the user to close it before continuing
-    # Open editor of choice
-    subprocess.run(
-        [
-            str(vs_code_path),
-            "-w",
-            str(file_path),
-        ]
-    )
+    try:
+        # Try opening with VS Code and wait for it to close
+        result = subprocess.run([str(vs_code_path), "-w", str(file_path)], check=True)
+
+        if result.returncode == 0:
+            return  # Successfully opened in VS Code
+
+    except (FileNotFoundError, subprocess.CalledProcessError):
+
+        print("VS Code not found or failed to open. Using default editor...")
+
+    # Fallback to system default editor
+    try:
+        if sys.platform.startswith("win"):
+            os.startfile(file_path)  # Windows
+
+        elif sys.platform.startswith("darwin"):
+            subprocess.run(["open", file_path])  # macOS
+
+        else:
+            subprocess.run(["xdg-open", file_path])  # Linux
+
+    except Exception as e:
+
+        print(f"Error opening file: {e}")
 
 
 def make_mood_file():
@@ -77,7 +96,7 @@ def print_mood_file():
     Print the mood.ini file contents
     :param config: mood.ini file contents
     """
-    
+
     config = read_mood_file()
 
     if "Wallpapers" in config:
