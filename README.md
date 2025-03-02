@@ -1,9 +1,6 @@
 # Mood-Based Wallpaper Changer
 
-<video controls>
-  <source src="./videos/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Demo GIF](./videos/demo.gif)
 
 A Python script that changes your wallpaper based on your mood.
 
