@@ -33,7 +33,7 @@ elif not is_mood_file_exist():
     make_mood_file()
     exit()
 
-elif mood == "ls":
+elif mood == "ls" or mood == "list":
 
     # Print all the moods current available
     print_mood_file()
