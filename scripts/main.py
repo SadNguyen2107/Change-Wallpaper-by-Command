@@ -13,7 +13,20 @@ from mood_file import (
 mood = get_user_input()
 
 # Different commands for different moods
-if not is_mood_file_exist():
+if mood == "-h" or mood == "--help" or mood == "":
+    print(
+        """
+        Usage: mood [mood]
+
+        Change your wallpaper based on your mood.
+
+        Options:
+        [mood]  Your current mood. If you want to see all the moods available, type `mood ls`.
+        ls      List all the moods available.
+        edit    Edit the mood file.
+        """
+    )
+elif not is_mood_file_exist():
 
     # Create a mood file
     make_mood_file()
