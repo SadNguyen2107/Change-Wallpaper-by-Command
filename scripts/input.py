@@ -4,8 +4,7 @@ import argparse
 def get_user_input():
     """
     Get user input
-    :param args: user input
-    :return: user input
+    :return: user mood
     """
 
     # Get user input
