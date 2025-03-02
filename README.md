@@ -121,13 +121,13 @@ If using PowerShell, you can run:
 ## 🎯 Example Mood File (`mood.ini`)
 
 ```ini
+[Settings]
+text_editor = C:\Program Files\Notepad++\notepad++.exe
+
 [Wallpapers]
 happy = C:\Users\User\Pictures\happy.jpg
 sad = C:\Users\User\Pictures\sad.jpg
 excited = C:\Users\User\Pictures\excited.jpg
-
-[Settings]
-text_editor = C:\Program Files\Notepad++\notepad++.exe
 ```
 
 ---
