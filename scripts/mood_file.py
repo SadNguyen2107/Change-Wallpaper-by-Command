@@ -1,17 +1,18 @@
 from pathlib import Path
 import subprocess
+import json
+
+# Get the home directory
+home_dir = Path.home()
+
+# Create a file in the home directory
+file_path = home_dir / "mood.json"
 
 
 def make_mood_file():
     """
     Create a mood.json in the home directory
     """
-
-    # Get the home directory
-    home_dir = Path.home()
-
-    # Create a file in the home directory
-    file_path = home_dir / "mood.json"
 
     # Create the file
     with open(file_path, "w") as file:
@@ -25,3 +26,10 @@ def make_mood_file():
             str(file_path),
         ]
     )
+
+
+def read_mood_file():
+    with open(str(file_path), "r") as file:
+        mood_to_wallpaper = json.load(file)
+        
+    print("\n".join(mood_to_wallpaper))
