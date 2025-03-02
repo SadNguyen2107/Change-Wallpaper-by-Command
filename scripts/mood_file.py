@@ -20,26 +20,13 @@ def is_mood_file_exist():
     return file_path.exists()
 
 
-def get_text_editor():
-    """
-    Get the preferred text editor from mood.ini. Defaults to system editor if not set.
-    """
-    config = configparser.ConfigParser()
-    config.read(file_path)
-
-    return (
-        config["Settings"].get("text_editor", "").strip()
-        if "Settings" in config
-        else ""
-    )
-
-
 def edit_mood_file():
     """
     Open the mood.ini file for the user to edit.
     First, try opening with VS Code. If it fails, open with the default editor.
     """
 
+    from text_editor import get_text_editor
     editor_path = get_text_editor()
 
     if editor_path:
