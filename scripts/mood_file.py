@@ -57,10 +57,10 @@ def read_mood_file() -> dict["str"]:
     Reads the mood.ini file and returns the stored moods.
 
     If the file does not exist, it creates one and prompts the user to edit it.
-    
+
     :return: A dictionary containing mood-to-wallpaper mappings.
     """
-    
+
     if not is_mood_file_exist():
         print("Mood file does not exist. Creating one now...")
         make_mood_file()
@@ -68,10 +68,19 @@ def read_mood_file() -> dict["str"]:
     config = configparser.ConfigParser()
     config.read(file_path)
 
+    return config
+
+
+def print_mood_file():
+    """
+    Print the mood.ini file contents
+    :param config: mood.ini file contents
+    """
+    
+    config = read_mood_file()
+
     if "Wallpapers" in config:
         moods = config["Wallpapers"]
         print("\n".join(moods))
     else:
         print("No wallpapers section found!")
-
-    return config["Wallpapers"]
