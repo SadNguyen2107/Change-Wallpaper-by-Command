@@ -28,6 +28,7 @@ def edit_mood_file():
     )
 
     # Open VS Code and wait for the user to close it before continuing
+    # Open editor of choice
     subprocess.run(
         [
             str(vs_code_path),
@@ -43,7 +44,7 @@ def make_mood_file():
     """
 
     config = configparser.ConfigParser()
-    config["Wallpapers"] = {"Your mood here": "wallpaper path here"}
+    config["Wallpapers"] = {"command_here": "wallpaper_path.jpg"}
 
     with open(file_path, "w") as file:
         config.write(file)
