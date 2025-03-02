@@ -20,26 +20,35 @@ def is_mood_file_exist():
     return file_path.exists()
 
 
+def get_text_editor():
+    """
+    Get the preferred text editor from mood.ini. Defaults to system editor if not set.
+    """
+    config = configparser.ConfigParser()
+    config.read(file_path)
+
+    return (
+        config["Settings"].get("text_editor", "").strip()
+        if "Settings" in config
+        else ""
+    )
+
+
 def edit_mood_file():
     """
     Open the mood.ini file for the user to edit.
     First, try opening with VS Code. If it fails, open with the default editor.
     """
 
-    vs_code_path = (
-        home_dir / "AppData" / "Local" / "Programs" / "Microsoft VS Code" / "Code.exe"
-    )
+    editor_path = get_text_editor()
 
-    try:
-        # Try opening with VS Code and wait for it to close
-        result = subprocess.run([str(vs_code_path), "-w", str(file_path)], check=True)
+    if editor_path:
+        try:
+            subprocess.run([editor_path, str(file_path)], check=True)
+            return  # Successfully opened with the preferred editor
 
-        if result.returncode == 0:
-            return  # Successfully opened in VS Code
-
-    except (FileNotFoundError, subprocess.CalledProcessError):
-
-        print("VS Code not found or failed to open. Using default editor...")
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            print(f"Failed to open with {editor_path}. Using default editor...")
 
     # Fallback to system default editor
     try:
@@ -53,7 +62,6 @@ def edit_mood_file():
             subprocess.run(["xdg-open", file_path])  # Linux
 
     except Exception as e:
-
         print(f"Error opening file: {e}")
 
 
@@ -63,6 +71,7 @@ def make_mood_file():
     """
 
     config = configparser.ConfigParser()
+    config["Settings"] = {"text_editor": ""}
     config["Wallpapers"] = {"command_here": "wallpaper_path.jpg"}
 
     with open(file_path, "w") as file:
