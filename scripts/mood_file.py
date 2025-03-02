@@ -9,14 +9,10 @@ home_dir = Path.home()
 file_path = home_dir / "mood.json"
 
 
-def make_mood_file():
+def edit_mood_file():
     """
-    Create a mood.json in the home directory
+    Open the mood.json file for the user to edit
     """
-
-    # Create the file
-    with open(file_path, "w") as file:
-        file.write('{\n\t"Your mood here": "wallpaper path here"\n}')
 
     # Open VS Code and wait for the user to close it before continuing
     subprocess.run(
@@ -26,6 +22,18 @@ def make_mood_file():
             str(file_path),
         ]
     )
+
+def make_mood_file():
+    """
+    Create a mood.json in the home directory
+    """
+
+    # Create the file
+    with open(file_path, "w") as file:
+        file.write('{\n\t"Your mood here": "wallpaper path here"\n}')
+
+    # Open the file for the user to edit
+    edit_mood_file()
 
 
 def read_mood_file():
