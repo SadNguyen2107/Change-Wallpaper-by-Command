@@ -1,6 +1,4 @@
-from mood_file import (
-    read_mood_file,
-)
+from mood_file import read_mood_file
 
 
 def get_wallpaper_path(mood):
