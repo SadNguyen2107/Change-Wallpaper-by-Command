@@ -1,10 +1,10 @@
 import ctypes
 
-# Path to the wallpaper image
-wallpaper_path = r"C:\Users\User\OneDrive - Hanoi University of Science and Technology\Pictures\Wallpapers\peakpx (1).jpg"
 
-# Apply wallpaper   
-SPI_SETDESKWALLPAPER = 20
-ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wallpaper_path, 3)
+# Apply wallpaper
+def change_wallpaper(wallpaper_path):
+    try:
+        ctypes.windll.user32.SystemParametersInfoW(20, 0, wallpaper_path, 3)
 
-
+    except Exception as e:
+        print(f"Error: {e}")
