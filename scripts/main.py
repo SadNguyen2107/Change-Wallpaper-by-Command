@@ -14,7 +14,7 @@ mood = get_user_input()
 
 # Different commands for different moods
 if not is_mood_file_exist():
-    
+
     # Create a mood file
     make_mood_file()
     exit()

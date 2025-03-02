@@ -1,10 +1,7 @@
-from pathlib import Path
-import json
-
 from mood_file import (
-    file_path,
     read_mood_file,
 )
+
 
 def get_wallpaper_path(mood):
     """
@@ -12,7 +9,7 @@ def get_wallpaper_path(mood):
     :param mood: user mood
     :return: wallpaper path
     """
-    
+
     # Read the mood file
     wallpaper_path_dict = read_mood_file()
 
